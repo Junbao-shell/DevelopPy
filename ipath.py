@@ -32,7 +32,6 @@ def osTest():
     currFileDirPath = os.path.dirname(__file__)
     print('current file dir path: ', currFileDirPath)
     
-
     
 def pathlihbTest():
     print('path lib test')
