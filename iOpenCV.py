@@ -1,0 +1,50 @@
+# iOpenCV.py
+# date: 2023/04/11
+
+# brief 学习基于python的OpenCV
+
+import struct
+import cv2 as cv
+import numpy as np
+import matplotlib.pyplot as plt
+
+print(cv.__version__)
+
+
+def bytes2cv(img):
+    img = np.array(bytearray(img), dtype='uint8')
+    img = img.reshape(512,512,1)
+    return cv.imdecode(img, cv.IMREAD_UNCHANGED)
+
+def cv2bytes(img):
+    return np.array(cv.imencode('.png', img)[1]).tobytes()
+
+def OpenRaw(path):
+    with open(path, mode='rb') as fp:
+        arr = fp.read()
+        img = np.array(bytearray(arr), dtype='uint8')
+        img = img.reshape(512,512,1)
+        cv.imshow('peppers image', img)
+        cv.waitKey(0)
+        cv.destroyAllWindows()
+
+def ReadRGBImage():
+    lena = cv.imread('D:/Pictures/Lena/Lena.bmp')
+    cv.imshow('lena image',lena)
+    print('image shape: ', lena.shape)
+    cv.waitKey(0)
+    cv.destroyAllWindows()
+
+def ReadGrayImage():
+    img = OpenRaw('D:/Pictures/Peppers/Peppers.raw')
+    cv.imshow('peppers image', img)
+    cv.waitKey(0)
+    cv.destroyAllWindows()
+
+if __name__ == '__main__':
+    print('test opencv')
+    # ReadRGBImage()
+    # ReadGrayImage()
+    OpenRaw('D:/Pictures/Peppers/Peppers.raw')
+    print('test opencv over')
+    
