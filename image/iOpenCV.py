@@ -10,7 +10,6 @@ import matplotlib.pyplot as plt
 
 print(cv.__version__)
 
-
 def bytes2cv(img):
     img = np.array(bytearray(img), dtype='uint8')
     img = img.reshape(512,512,1)
@@ -19,15 +18,6 @@ def bytes2cv(img):
 def cv2bytes(img):
     return np.array(cv.imencode('.png', img)[1]).tobytes()
 
-def OpenRaw(path):
-    with open(path, mode='rb') as fp:
-        arr = fp.read()
-        img = np.array(bytearray(arr), dtype='uint8')
-        img = img.reshape(512,512,1)
-        cv.imshow('peppers image', img)
-        cv.waitKey(0)
-        cv.destroyAllWindows()
-
 def ReadRGBImage():
     lena = cv.imread('D:/Pictures/Lena/Lena.bmp')
     cv.imshow('lena image',lena)
@@ -35,16 +25,8 @@ def ReadRGBImage():
     cv.waitKey(0)
     cv.destroyAllWindows()
 
-def ReadGrayImage():
-    img = OpenRaw('D:/Pictures/Peppers/Peppers.raw')
-    cv.imshow('peppers image', img)
-    cv.waitKey(0)
-    cv.destroyAllWindows()
-
 if __name__ == '__main__':
     print('test opencv')
     # ReadRGBImage()
-    # ReadGrayImage()
-    OpenRaw('D:/Pictures/Peppers/Peppers.raw')
     print('test opencv over')
     
